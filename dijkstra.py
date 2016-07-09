@@ -1,11 +1,14 @@
 import pprint
+import math
+import pdb
 
 def find_neighbors(pos):
-    row,column=pos
+    row,col=pos
     list_pos=list()
     for dr in [-1,0,1]:
         for dc in [-1,0,1]:
-            list_pos.append((row+dr,column+dc))
+            list_pos.append((row+dr,col+dc))
+    del list_pos[list_pos.index((row,col))]
     return list_pos
 
 class Dijkstra_solver:
