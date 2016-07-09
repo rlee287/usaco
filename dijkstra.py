@@ -11,7 +11,12 @@ def find_neighbors(pos):
     del list_pos[list_pos.index((row,col))]
     return list_pos
 
-class Dijkstra_solver:
+def find_distance(pos1,pos2):
+    row1,col1=pos1
+    row2,col2=pos2
+    return math.sqrt(pow(row1-row2,2)+pow(col1-col2,2))
+
+class DijkstraSolver:
     def __init__(self, filepath):
         """Zero based with
            <space>=open
