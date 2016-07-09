@@ -1,5 +1,13 @@
 import pprint
 
+def find_neighbors(pos):
+    row,column=pos
+    list_pos=list()
+    for dr in [-1,0,1]:
+        for dc in [-1,0,1]:
+            list_pos.append((row+dr,column+dc))
+    return list_pos
+
 class Dijkstra_solver:
     def __init__(self, filepath):
         """Zero based with
@@ -38,6 +46,7 @@ class Dijkstra_solver:
             self.start
         except:
             raise ValueError("File does not contain start point")
+
 
 if __name__=="__main__":
     q=Dijkstra_solver("test.txt")
