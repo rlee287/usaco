@@ -26,7 +26,7 @@ class DijkstraSolver:
         self.filepath=filepath
         # Map characters in file to initial distances or walls
         map_char={"s": 0,
-                  "w": float("inf"),
+                  "f": float("inf"),
                   " ": float("inf")}
         self.distmatrix=dict()
         # Read file contents, row by row
@@ -47,17 +47,71 @@ class DijkstraSolver:
                     column+=1
                 row+=1
         try:
-            self.finish
-        except:
+            self.finish # Check that self.finish exists
+        except NameError:
             raise ValueError("File does not contain end point")
         try:
-            self.start
+            self.distmatrix[self.start]["visited"]=True
         except:
             raise ValueError("File does not contain start point")
 
+    def find_path(self):
+        current=self.start
+        current_point=self.distmatrix[self.start]
+        outside={'dist': 'wall', 'parent': None, 'visited': True}
+        while self.distmatrix[self.finish].get("visited") is False:
+            print("Currently on", current)
+            for neighbor in find_neighbors(current):
+                print("  Checking neighbor",neighbor)
+                neighbor_point=self.distmatrix.get(neighbor,outside)
+                if neighbor_point["visited"] is False:
+                    print("    Neighbor",neighbor,"is not visited")
+                    neighbor_dist=current_point["dist"]
+                    neighbor_dist+=find_distance(current,neighbor)
+                    if not isinstance((neighbor_point["dist"]), str):
+                        if neighbor_point["dist"]>neighbor_dist:
+                            neighbor_point["dist"]=neighbor_dist
+                            neighbor_point["parent"]=current
+                            print("    Neighbor distance is",neighbor_dist)
+                            print("    Neighbor parent is",current)
+                else:
+                    print("    Neighbor",neighbor,"is visited")
+            current_point["visited"]=True
+            print("  Point",current,"is visited")
+            print("  ",end="")
+            pprint.pprint(current_point)
+            mindist=float("inf")
+            minpoint=None
+            for point in self.distmatrix:
+                if point != current and not self.distmatrix[point]["visited"]:
+                    point_dist=self.distmatrix[point]["dist"]
+                    if type(point_dist) is not str:
+                        if mindist>point_dist:
+                            mindist=point_dist
+                            minpoint=point
+            if minpoint is None:
+                exit_while=True
+                break
+            else:
+                exit_while=False
+            #pdb.set_trace()
+            current=minpoint
+            current_point=self.distmatrix[current]
+        #endwhile
+        if exit_while:
+            return "There is no pathway"
+        else:
+            next_point=self.finish
+            pathway=[next_point]
+            while next_point != self.start:
+                next_point=self.distmatrix[next_point]["parent"]
+                pathway.append(next_point)
+            return pathway
 
 if __name__=="__main__":
-    q=Dijkstra_solver("test.txt")
+    q=DijkstraSolver("test.txt")
     pprint.pprint(q.distmatrix)
     print("Start node is:", q.start)
     print("Finish node is:", q.finish)
+    pathway=q.find_path()
+    print(pathway)
