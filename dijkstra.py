@@ -68,8 +68,8 @@ class DijkstraSolver:
                     print("    Neighbor",neighbor,"is not visited")
                     neighbor_dist=current_point["dist"]
                     neighbor_dist+=find_distance(current,neighbor)
-                    if not isinstance((neighbor_point["dist"]), str):
-                        if neighbor_point["dist"]>neighbor_dist:
+                    if not isinstance((neighbor_point["dist"]), str) and \
+                                    neighbor_point["dist"]>neighbor_dist:
                             neighbor_point["dist"]=neighbor_dist
                             neighbor_point["parent"]=current
                             print("    Neighbor distance is",neighbor_dist)
@@ -83,10 +83,11 @@ class DijkstraSolver:
             mindist=float("inf")
             minpoint=None
             for point in self.distmatrix:
-                if point != current and not self.distmatrix[point]["visited"]:
-                    point_dist=self.distmatrix[point]["dist"]
-                    if not isinstance(point_dist,str):
-                        if mindist>point_dist:
+                point_dict=self.distmatrix[point]
+                point_dist=point_dict["dist"]
+                if point != current and not point_dict["visited"]:
+                    if not isinstance(point_dist,str) and \
+                                mindist>point_dist:
                             mindist=point_dist
                             minpoint=point
             if minpoint is None:
