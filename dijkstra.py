@@ -109,7 +109,8 @@ class DijkstraSolver:
             return pathway
 
 if __name__=="__main__":
-    q=DijkstraSolver("test.txt")
+    filename=input("Please enter a filename:")
+    q=DijkstraSolver(filename)
     pprint.pprint(q.distmatrix)
     print("Start node is:", q.start)
     print("Finish node is:", q.finish)
