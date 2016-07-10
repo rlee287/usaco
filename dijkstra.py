@@ -1,6 +1,5 @@
 import pprint
 import math
-import pdb
 
 def find_neighbors(pos):
     row,col=pos
@@ -76,10 +75,10 @@ class DijkstraSolver:
                     neighbor_dist+=find_distance(current,neighbor)
                     if not isinstance((neighbor_point["dist"]), str) and \
                                     neighbor_point["dist"]>neighbor_dist:
-                            neighbor_point["dist"]=neighbor_dist
-                            neighbor_point["parent"]=current
-                            print("    Neighbor distance is",neighbor_dist)
-                            print("    Neighbor parent is",current)
+                        neighbor_point["dist"]=neighbor_dist
+                        neighbor_point["parent"]=current
+                        print("    Neighbor distance is",neighbor_dist)
+                        print("    Neighbor parent is",current)
                 else:
                     print("    Neighbor",neighbor,"is visited")
             current_point["visited"]=True
@@ -94,8 +93,8 @@ class DijkstraSolver:
                 if point != current and not point_dict["visited"]:
                     if not isinstance(point_dist,str) and \
                                 mindist>point_dist:
-                            mindist=point_dist
-                            minpoint=point
+                        mindist=point_dist
+                        minpoint=point
             if minpoint is None:
                 exit_while=True
                 break
