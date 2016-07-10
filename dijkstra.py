@@ -85,7 +85,7 @@ class DijkstraSolver:
             for point in self.distmatrix:
                 if point != current and not self.distmatrix[point]["visited"]:
                     point_dist=self.distmatrix[point]["dist"]
-                    if type(point_dist) is not str:
+                    if not isinstance(point_dist,str):
                         if mindist>point_dist:
                             mindist=point_dist
                             minpoint=point
@@ -114,5 +114,5 @@ if __name__=="__main__":
     pprint.pprint(q.distmatrix)
     print("Start node is:", q.start)
     print("Finish node is:", q.finish)
-    pathway=q.find_path()
-    print(pathway)
+    path=q.find_path()
+    print(path)
