@@ -31,29 +31,35 @@ class DijkstraSolver:
         self.distmatrix=dict()
         # Read file contents, row by row
         with open(self.filepath,"r") as file_handle:
+            has_start=False
+            has_finish=False
             row=0
             for line in file_handle:
                 column=0
                 for element in line:
                     if element=="f":
-                        self.finish=(row,column)
+                        if not has_finish:
+                            self.finish=(row,column)
+                            has_finish=True
+                        else:
+                            raise ValueError("File contains multiple end points")
                     if element=="s":
-                        self.start=(row,column)
+                        if not has_start:
+                            self.start=(row,column)
+                            has_start=True
+                        else:
+                            raise ValueError("File contains multiple start points")
                     init_dist=map_char.get(element,"wall")
-                    visited=True if init_dist=="wall" else False
+                    visited=(init_dist=="wall" or element==has_start)
                     self.distmatrix[(row, column)]={"dist": init_dist,
                                                     "parent": None,
                                                     "visited": visited}
                     column+=1
                 row+=1
-        try:
-            self.finish # Check that self.finish exists
-        except NameError:
-            raise ValueError("File does not contain end point")
-        try:
-            self.distmatrix[self.start]["visited"]=True
-        except:
-            raise ValueError("File does not contain start point")
+            if not has_finish:
+                raise ValueError("File does not contain end point")
+            if not has_start:
+                raise ValueError("File does not contain start point")
 
     def find_path(self):
         current=self.start
@@ -64,7 +70,7 @@ class DijkstraSolver:
             for neighbor in find_neighbors(current):
                 print("  Checking neighbor",neighbor)
                 neighbor_point=self.distmatrix.get(neighbor,outside)
-                if neighbor_point["visited"] is False:
+                if not neighbor_point["visited"]:
                     print("    Neighbor",neighbor,"is not visited")
                     neighbor_dist=current_point["dist"]
                     neighbor_dist+=find_distance(current,neighbor)
@@ -95,7 +101,6 @@ class DijkstraSolver:
                 break
             else:
                 exit_while=False
-            #pdb.set_trace()
             current=minpoint
             current_point=self.distmatrix[current]
         #endwhile
