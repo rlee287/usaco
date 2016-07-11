@@ -10,9 +10,15 @@ if c<a:
     a,b,c,d=(c,d,a,b)
 dist1=b-a
 dist2=d-c
-overlap=min(0,int(c)-int(b))
-overlap*=-1
+if c>b:
+    output=dist1+dist2
+elif a<c and b>d:
+    output=b-a
+else:
+    overlap=min(0,int(c)-int(b))
+    overlap*=-1
+    output=dist1+dist2-overlap
 
 with open("paint.out", "w") as output_file:
-    output_file.write(str(dist1+dist2-overlap))
+    output_file.write(str(output))
     output_file.write("\n")
