@@ -23,8 +23,7 @@ if __name__=="__main__":
                 print("Renaming",orig_name,"to",target_name_in)
                 os.rename(orig_name,target_name_in)
                 print("Executing",file_run)
-                with open(file_run, "r") as file_handle:
-                    exec(file_handle.read())
+                os.system("python "+file_run)
                 print("Renaming",target_name_in,"to",orig_name)
                 os.rename(target_name_in,orig_name)
                 target_name_out_n=target_name_out+"."+str(n)
@@ -37,6 +36,6 @@ if __name__=="__main__":
                 print("  Correct is",correct)
                 print("  Produced is",produced)
                 print("  Correct" if correct==produced else "  Incorrect")
+                n+=1
             else:
                 break
-            n+=1
