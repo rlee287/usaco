@@ -3,18 +3,13 @@ Farmer John, known far and wide for the quality of the milk produced on his farm
 You are given a transcript of the party -- who drinks what when, and also who gets sick when. Based on this information, you can deduce which of the milks could possibly be the bad one. Using this knowledge, help Farmer John determine the minimum number of doses of medicine he will need to obtain in order to guarantee that he can cure all of the individuals who become sick, either during or after the party.
 
 INPUT FORMAT (file badmilk.in):
-The first line of the input contains integers N
-, M, D, and S.
+The first line of the input contains integers N, M, D, and S.
 
 The next D
-lines (1≤D≤1000) each contain three integers p,m,t, indicating that person p drank milk m at time t. The value of p is in the range 1…N, m is in the range 1…M, and t is in the range 1…100
-
-. A person may drink the same milk several times, and may also drink several types of milk at the same point in time.
+lines (1≤D≤1000) each contain three integers p,m,t, indicating that person p drank milk m at time t. The value of p is in the range 1…N, m is in the range 1…M, and t is in the range 1…100. A person may drink the same milk several times, and may also drink several types of milk at the same point in time.
 
 The next S
-lines (1≤S≤N) each contain two integers p,t, indicating that person p gets sick at time t. The value of p is in the range 1…N, and t is in the range 1…100
-
-. Each person gets sick at most once, and they only get sick because they drank the bad milk at some strictly earlier point in time.
+lines (1≤S≤N) each contain two integers p,t, indicating that person p gets sick at time t. The value of p is in the range 1…N, and t is in the range 1…100. Each person gets sick at most once, and they only get sick because they drank the bad milk at some strictly earlier point in time.
 
 OUTPUT FORMAT (file badmilk.out):
 A single integer, specifying the minimum number of doses of medicine Farmer John needs to obtain so that he can guarantee that he will have sufficiently many doses to treat all the people who become sick, both during and after the party.
