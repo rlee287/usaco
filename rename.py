@@ -2,17 +2,18 @@ import os
 import sys
 
 if __name__=="__main__":
-    print(sys.argv)
+    target_name=sys.argv[1]
+    target_name.rstrip(".in")
+    target_name.rstrip(".out")
     if "--clean" in sys.argv:
         n=1
         while True:
             try:
-                os.remove(sys.argv[1]+".out."+str(n))
+                os.remove(target_name+".out."+str(n))
             except FileNotFoundError:
                 break
             n+=1
     else:
-        target_name=sys.argv[1]
         target_name_in=target_name+".in"
         target_name_out=target_name+".out"
         file_run=sys.argv[2]
@@ -33,6 +34,8 @@ if __name__=="__main__":
                     correct=correct_file.read()
                 with open(target_name_out_n) as produced_file:
                     produced=produced_file.read()
+                correct.rstrip("\n")
+                produced.rstrip("\n")
                 print("  Correct is",correct)
                 print("  Produced is",produced)
                 print("  Correct" if correct==produced else "  Incorrect")
