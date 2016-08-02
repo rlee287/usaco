@@ -34,8 +34,8 @@ if __name__=="__main__":
                     correct=correct_file.read()
                 with open(target_name_out_n) as produced_file:
                     produced=produced_file.read()
-                correct.rstrip("\n")
-                produced.rstrip("\n")
+                correct=correct.rstrip("\n")
+                produced=produced.rstrip("\n")
                 print("  Correct is",correct)
                 print("  Produced is",produced)
                 print("  Correct" if correct==produced else "  Incorrect")
