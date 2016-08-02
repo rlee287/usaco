@@ -4,7 +4,7 @@ def explode_bales(bale_set,bale_start):
     new_bales={bale_start}
     bales_left=bale_set.copy()
     total_bales=set()
-    radius=1
+    radius=0
     #print("Starting with bale",bale_start)
     while new_bales:
         #print("  Radius is",radius)
@@ -12,7 +12,8 @@ def explode_bales(bale_set,bale_start):
         for bale_exploded in new_bales:
             possible_bales|={bale_exploded+n for n in
                              range(-radius,radius+1)
-                             if (n>=0 and n<=1000000000)}
+                             if (bale_exploded+n>=0 and
+                                 n+bale_exploded<=1000000000)}
         new_bales=set()
         new_bales=possible_bales & bales_left
         #print("    Exploding",new_bales)

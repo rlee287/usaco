@@ -6,8 +6,7 @@ Please determine the maximum number of hay bales that can explode if a single co
 
 INPUT FORMAT (file angry.in):
 The first line of input contains N
-(1≤N≤100). The remaining N lines all contain integers x1…xN (each in the range 0…1,000,000,000
-).
+(1≤N≤100). The remaining N lines all contain integers x1…xN (each in the range 0…1,000,000,000).
 
 OUTPUT FORMAT (file angry.out):
 Please output the maximum number of hay bales that a single cow can cause to explode.
