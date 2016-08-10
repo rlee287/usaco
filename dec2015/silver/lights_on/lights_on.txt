@@ -8,13 +8,12 @@ INPUT FORMAT (file lightson.in):
 The first line of input contains integers N
 and M (1≤M≤20,000).
 
-The next Mlines each describe a single light switch with four integers x, y, a, b, that a switch in room (x,y) can be used to toggle the lights in room (a,b). Multiple switches may exist in any room, and multiple switches may toggle the lights of any room.
+The next M lines each describe a single light switch with four integers x, y, a, b, that a switch in room (x,y) can be used to toggle the lights in room (a,b). Multiple switches may exist in any room, and multiple switches may toggle the lights of any room.
 
 OUTPUT FORMAT (file lightson.out):
 A single line giving the maximum number of rooms Bessie can illuminate.
 
 SAMPLE INPUT:
-
  
 3 6
 1 1 1 2
