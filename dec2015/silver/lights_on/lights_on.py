@@ -1,4 +1,5 @@
 import pprint
+import time
 
 def adjacent_rooms(room,n):
     x,y=room
@@ -34,15 +35,21 @@ current_room=(1,1)
 rooms_lit.add(current_room)
 lit_unvisited=True
 while lit_unvisited:
+    print("Current room is",current_room)
+    visited_rooms.add(current_room)
+    print("  Switching now")
     for switch in dict_rooms[current_room]:
+        print("    Switching",switch)
         rooms_lit.add(switch)
         lit_unvisited_adjacent=rooms_lit & adjacent_rooms(current_room,n)
         lit_unvisited_adjacent -= visited_rooms
         lit_unvisited_set=rooms_lit-visited_rooms
         lit_unvisited=(len(lit_unvisited_adjacent)>0)
-        visited_rooms.add(current_room)
-        if lit_unvisited:
-            current_room=list(lit_unvisited_adjacent)[0]
+    print("  Lit unvisited rooms",lit_unvisited_set)
+    print("  Lit unvisited adjacent rooms",lit_unvisited_adjacent)
+    if lit_unvisited:
+        current_room=list(lit_unvisited_set-{current_room})[0]
+    time.sleep(0.5)
 
 pprint.pprint(rooms_lit)
 with open("lightson.out","w") as file_handle:
