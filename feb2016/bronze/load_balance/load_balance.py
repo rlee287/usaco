@@ -20,6 +20,9 @@ with open("balancing.in","r") as input_file:
         cow_list.append((x,y))
         cow_list_x.append(x)
         cow_list_y.append(y)
+
+cow_list_x.sort()
+cow_list_y.sort()
 cow_list_x=[q+1 for q in cow_list_x]
 del cow_list_x[-1]
 cow_list_y=[q+1 for q in cow_list_y]
