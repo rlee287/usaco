@@ -5,11 +5,9 @@ You are given a transcript of the party -- who drinks what when, and also who ge
 INPUT FORMAT (file badmilk.in):
 The first line of the input contains integers N, M, D, and S.
 
-The next D
-lines (1≤D≤1000) each contain three integers p,m,t, indicating that person p drank milk m at time t. The value of p is in the range 1…N, m is in the range 1…M, and t is in the range 1…100. A person may drink the same milk several times, and may also drink several types of milk at the same point in time.
+The next D lines (1≤D≤1000) each contain three integers p,m,t, indicating that person p drank milk m at time t. The value of p is in the range 1…N, m is in the range 1…M, and t is in the range 1…100. A person may drink the same milk several times, and may also drink several types of milk at the same point in time.
 
-The next S
-lines (1≤S≤N) each contain two integers p,t, indicating that person p gets sick at time t. The value of p is in the range 1…N, and t is in the range 1…100. Each person gets sick at most once, and they only get sick because they drank the bad milk at some strictly earlier point in time.
+The next S lines (1≤S≤N) each contain two integers p,t, indicating that person p gets sick at time t. The value of p is in the range 1…N, and t is in the range 1…100. Each person gets sick at most once, and they only get sick because they drank the bad milk at some strictly earlier point in time.
 
 OUTPUT FORMAT (file badmilk.out):
 A single integer, specifying the minimum number of doses of medicine Farmer John needs to obtain so that he can guarantee that he will have sufficiently many doses to treat all the people who become sick, both during and after the party.
@@ -43,4 +41,4 @@ Milk 4: This cannot be the bad milk because person 2 did not drink it, and yet p
 
 The answer is therefore that Farmer John must obtain 3 doses of medicine, since if milk 1 is bad, then a total of 3 people will need to be cured.
 
-Problem credits: Austin Anderson and Brian Dean 
+Problem credits: Austin Anderson and Brian Dean
