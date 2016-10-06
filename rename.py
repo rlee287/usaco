@@ -2,7 +2,12 @@ import os
 import sys
 
 if __name__=="__main__":
-    target_name=sys.argv[1]
+    if "-i" in sys.argv:
+        target_name=input("Please enter the target name the program will read: ")
+        file_run=input("Please enter the name of the program file: ")
+    else:
+        target_name=sys.argv[1]
+        file_run=sys.argv[2]
     target_name.rstrip(".in")
     target_name.rstrip(".out")
     if "--clean" in sys.argv:
@@ -16,7 +21,7 @@ if __name__=="__main__":
     else:
         target_name_in=target_name+".in"
         target_name_out=target_name+".out"
-        file_run=sys.argv[2]
+        correct_list=list()
         n=1
         while True:
             orig_name="{}.in".format(n)
@@ -38,7 +43,18 @@ if __name__=="__main__":
                 produced=produced.rstrip("\n")
                 print("  Correct is",correct)
                 print("  Produced is",produced)
-                print("  Correct" if correct==produced else "  Incorrect")
+                correct_bool=(correct==produced)
+                correct_list.append(correct_bool)
+                print("  Correct" if correct_bool else "  Incorrect")
                 n+=1
             else:
+                total_correct=0
+                total_incorrect=n
+                for num,corr in enumerate(correct_list):
+                    print(num+1,corr)
+                    if corr:
+                        total_correct+=1
+                        total_incorrect-=1
+                print("-------- {0} correct, {1} incorrect --------"
+                      .format(total_correct,total_incorrect))
                 break
