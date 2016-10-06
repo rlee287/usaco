@@ -8,6 +8,7 @@ if __name__=="__main__":
     else:
         target_name=sys.argv[1]
         file_run=sys.argv[2]
+        assert target_name != "--clean"
     target_name.rstrip(".in")
     target_name.rstrip(".out")
     if "--clean" in sys.argv:
