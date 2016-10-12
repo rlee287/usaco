@@ -50,7 +50,7 @@ if __name__=="__main__":
                 n+=1
             else:
                 total_correct=0
-                total_incorrect=n
+                total_incorrect=n-1
                 for num,corr in enumerate(correct_list):
                     print(num+1,corr)
                     if corr:
